@@ -39,4 +39,29 @@ class AppStyle {
     fontWeight: FontWeight.w400,
     color: ColorsManager.green,
   );
+  static TextStyle articleSourceName = GoogleFonts.poppins(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w400,
+    color: Color(0xFF79828B),
+  );
+  static TextStyle articleTitle = GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: Color(0xFF42505C),
+  );
+  static TextStyle articlePublishedDate = GoogleFonts.inter(
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w400,
+    color: Color(0xFFA3A3A3),
+  );
+  static TextStyle selectedTabText = GoogleFonts.exo(
+    color: ColorsManager.white,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle unSelectedTabText = GoogleFonts.exo(
+    color: ColorsManager.green,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+  );
 }
