@@ -64,4 +64,9 @@ class AppStyle {
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle articleContent = GoogleFonts.poppins(
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w300,
+    color: Color(0xFF42505C),
+  );
 }
