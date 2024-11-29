@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/core/colors_manager.dart';
+import 'package:news_app/core/routes_manager.dart';
 import 'package:news_app/data/api/api_manager/api_manager.dart';
 import 'package:news_app/data/api/model/articles_response/article.dart';
 
@@ -31,7 +32,7 @@ class ArticlesListWidget extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (context, index) => InkWell(
                 onTap: () {},
-                child: buildArticleItem(article: articlesList[index])),
+                child: buildArticleItem(context, article: articlesList[index])),
             itemCount: articlesList.length,
           ),
         );
@@ -39,44 +40,53 @@ class ArticlesListWidget extends StatelessWidget {
     );
   }
 
-  Widget buildArticleItem({required Article article}) {
-    return Padding(
-      padding: REdgeInsets.all(12.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(5.r)),
-            child: CachedNetworkImage(
-              imageUrl: article.urlToImage ?? '',
-              placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(
-                color: ColorsManager.green,
-              )),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+  static Widget buildArticleItem(context, {required Article article, required}) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          RoutesManager.articleDetails,
+          arguments: article,
+        );
+      },
+      child: Padding(
+        padding: REdgeInsets.all(12.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5.r)),
+              child: CachedNetworkImage(
+                imageUrl: article.urlToImage ?? '',
+                placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(
+                  color: ColorsManager.green,
+                )),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 6.h,
-          ),
-          Text(
-            article.source?.name ?? '',
-            style: AppStyle.articleSourceName,
-          ),
-          SizedBox(
-            height: 6.h,
-          ),
-          Text(
-            article.title ?? '',
-            style: AppStyle.articleTitle,
-          ),
-          Text(
-            article.publishedAt ?? '',
-            style: AppStyle.articlePublishedDate,
-            textAlign: TextAlign.end,
-          ),
-        ],
+            SizedBox(
+              height: 6.h,
+            ),
+            Text(
+              article.source?.name ?? '',
+              style: AppStyle.articleSourceName,
+            ),
+            SizedBox(
+              height: 6.h,
+            ),
+            Text(
+              article.title ?? '',
+              style: AppStyle.articleTitle,
+            ),
+            Text(
+              article.publishedAt ?? '',
+              style: AppStyle.articlePublishedDate,
+              textAlign: TextAlign.end,
+            ),
+          ],
+        ),
       ),
     );
   }
