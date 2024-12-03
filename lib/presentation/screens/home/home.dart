@@ -8,7 +8,7 @@ import 'package:news_app/presentation/screens/home/tabs/categories/category_deta
 import 'package:news_app/presentation/screens/home/tabs/settings/settings.dart';
 
 import '../../../core/colors_manager.dart';
-import 'custom_search_delegate.dart';
+import 'custom_search_delegate/custom_search_delegate.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
