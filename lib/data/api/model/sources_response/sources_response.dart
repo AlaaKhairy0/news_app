@@ -3,12 +3,19 @@ import 'source.dart';
 class SourcesResponse {
   String? status;
   List<Source>? sources;
+  String? code;
+  String? message;
   SourcesResponse({
       this.status, 
-      this.sources,});
+      this.sources,
+    this.code,
+    this.message,
+  });
 
   SourcesResponse.fromJson(dynamic json) {
     status = json['status'];
+    code = json['code'];
+    message = json['message'];
     if (json['sources'] != null) {
       sources = [];
       json['sources'].forEach((v) {
