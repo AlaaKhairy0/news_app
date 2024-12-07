@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/base/base_state/base_state.dart';
+import 'package:news_app/base/base_viewModel/base_viewModel.dart';
+import 'package:news_app/result.dart';
 
 import '../../../../data/api/api_manager/api_manager.dart';
 import '../../../../data/api/model/articles_response/article.dart';
 
-class CustomSearchDelegateViewModel extends ChangeNotifier {
-  List<Article>? articles;
-
-  String? errorMessage;
-  bool isLoading = false;
+class CustomSearchDelegateViewModel extends BaseViewModel<List<Article>> {
+  CustomSearchDelegateViewModel() : super(state: LoadingState());
 
   Future<void> getArticlesByQuery(String query) async {
-    try{
-      isLoading = true;
-      notifyListeners();
-      var response = await ApiManager.searchArticles(query: query );
-      isLoading = false;
-      if(response.status == 'ok'){
-        articles = response.articles;
-      }else{
-        errorMessage = response.message;
-      }
-      notifyListeners();
-    }catch(e){
-      isLoading = false;
-      errorMessage = 'Plz, Check Internet Connection';
-      notifyListeners();
+    emit(LoadingState());
+    var response = await ApiManager.searchArticles(query: query);
+    switch (response) {
+      case Success<List<Article>>():
+        emit(SuccessState(data: response.data));
+      case ServerError<List<Article>>():
+        emit(ErrorState(serverError: response));
+      case Error<List<Article>>():
+        emit(ErrorState(error: response));
     }
+    // if(response.status == 'ok'){
+    //   articles = response.articles;
+    // }else{
+    //   errorMessage = response.message;
+    // }
+    // notifyListeners();
   }
 }

@@ -3,18 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/core/colors_manager.dart';
 import 'package:news_app/data/api/model/sources_response/source.dart';
-import 'package:news_app/presentation/screens/home/tabs/categories/category_details/widgets/articles_list_widget/articles_list_widget.dart';
+import 'package:news_app/presentation/screens/home/tabs/articles/articles_view/articles_view.dart';
 
-class SourcesTabWidget extends StatefulWidget {
-  SourcesTabWidget({super.key, required this.sources});
+class SourceTabs extends StatefulWidget {
+  SourceTabs({super.key, required this.sources});
 
   List<Source> sources;
 
   @override
-  State<SourcesTabWidget> createState() => _SourcesTabWidgetState();
+  State<SourceTabs> createState() => _SourceTabsState();
 }
 
-class _SourcesTabWidgetState extends State<SourcesTabWidget> {
+class _SourceTabsState extends State<SourceTabs> {
   int selectedSourceIndex = 0;
 
   @override
@@ -42,7 +42,7 @@ class _SourcesTabWidgetState extends State<SourcesTabWidget> {
             ).toList(),
           ),
         ),
-        ArticlesListWidget(source: widget.sources[selectedSourceIndex])
+        ArticlesView(source: widget.sources[selectedSourceIndex])
       ],
     );
   }

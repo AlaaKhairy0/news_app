@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/presentation/screens/home/home.dart';
-import 'package:news_app/presentation/screens/home/tabs/categories/article_details/article_details.dart';
 import 'package:news_app/presentation/screens/splash/splash.dart';
+import '../presentation/screens/home/tabs/article_details/article_details.dart';
 
 class RoutesManager {
   static const String splash = '/splash';

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/base/base_state/base_state.dart';
+import 'package:news_app/data/api/model/articles_response/article.dart';
 import 'package:news_app/presentation/screens/home/custom_search_delegate/custom_search_delegate_viewModel.dart';
+import 'package:news_app/presentation/screens/home/tabs/articles/articles_view/articles_view.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/assets_manager.dart';
 import '../../../../core/colors_manager.dart';
-import '../tabs/categories/category_details/widgets/articles_list_widget/articles_list_widget.dart';
 
 class CustomSearchDelegate extends SearchDelegate<String> {
   @override
@@ -43,33 +45,53 @@ class CustomSearchDelegate extends SearchDelegate<String> {
         child: ChangeNotifierProvider.value(
           value: viewModel,
           child: Consumer<CustomSearchDelegateViewModel>(
-            builder: (context, value, child) {
-              if (viewModel.isLoading) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: ColorsManager.green,
-                  ),
-                );
+            builder: (context, viewModel, child) {
+              var state = viewModel.state;
+              switch (state) {
+                case LoadingState<List<Article>>():
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: ColorsManager.green,
+                    ),
+                  );
+                case SuccessState<List<Article>>():
+                  return Expanded(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) => InkWell(
+                          onTap: () {},
+                          child: ArticlesView.buildArticleItem(context,
+                              article: state.data[index])),
+                      itemCount: state.data.length,
+                    ),
+                  );
+                case ErrorState<List<Article>>():
+                  return Text('handle it later');
               }
-              if(query == ''){
-                return Container();
-              }
-              if (viewModel.errorMessage != null ) {
-                return Center(child: Text(viewModel.errorMessage!));
-              }
-              return Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) => InkWell(
-                      onTap: () {},
-                      child: ArticlesListWidget.buildArticleItem(context,
-                          article: viewModel.articles![index])),
-                  itemCount: viewModel.articles!.length,
-                ),
-              );
+              // if (viewModel.isLoading) {
+              //   return Center(
+              //     child: CircularProgressIndicator(
+              //       color: ColorsManager.green,
+              //     ),
+              //   );
+              // }
+              // if(query == ''){
+              //   return Container();
+              // }
+              // if (viewModel.errorMessage != null ) {
+              //   return Center(child: Text(viewModel.errorMessage!));
+              // }
+              // return Expanded(
+              //   child: ListView.builder(
+              //     itemBuilder: (context, index) => InkWell(
+              //         onTap: () {},
+              //         child: ArticlesView.buildArticleItem(context,
+              //             article: viewModel.articles![index])),
+              //     itemCount: viewModel.articles!.length,
+              //   ),
+              // );
             },
           ),
-        )
-        );
+        ));
   }
 
   @override

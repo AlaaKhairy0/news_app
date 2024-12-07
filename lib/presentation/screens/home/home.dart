@@ -4,9 +4,8 @@ import 'package:news_app/core/strings_manager.dart';
 import 'package:news_app/data_models/category_dm.dart';
 import 'package:news_app/presentation/screens/home/drawer_widget/drawer.dart';
 import 'package:news_app/presentation/screens/home/tabs/categories/categories.dart';
-import 'package:news_app/presentation/screens/home/tabs/categories/category_details/category_details.dart';
+import 'package:news_app/presentation/screens/home/tabs/category_details/category_details.dart';
 import 'package:news_app/presentation/screens/home/tabs/settings/settings.dart';
-
 import '../../../core/colors_manager.dart';
 import 'custom_search_delegate/custom_search_delegate.dart';
 

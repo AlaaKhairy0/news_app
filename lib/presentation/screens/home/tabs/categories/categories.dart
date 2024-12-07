@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/data_models/category_dm.dart';
-import 'package:news_app/presentation/screens/home/tabs/categories/wigdets/category_item.dart';
+import 'package:news_app/presentation/screens/home/tabs/categories/widgets/category_item.dart';
 
 typedef OnCategoryClicked =void Function(CategoryDM category);
 class Categories extends StatelessWidget {
