@@ -3,12 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/core/colors_manager.dart';
 import 'package:news_app/data/api/model/sources_response/source.dart';
+import 'package:news_app/domain/entities/source_entity.dart';
 import 'package:news_app/presentation/screens/home/tabs/articles/articles_view/articles_view.dart';
 
 class SourceTabs extends StatefulWidget {
   SourceTabs({super.key, required this.sources});
 
-  List<Source> sources;
+  List<SourceEntity> sources;
 
   @override
   State<SourceTabs> createState() => _SourceTabsState();
@@ -48,7 +49,7 @@ class _SourceTabsState extends State<SourceTabs> {
   }
 
   Widget buildSourceItem({
-    required Source source,
+    required SourceEntity source,
     required bool isSelected,
   }) {
     return Container(

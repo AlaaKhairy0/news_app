@@ -1,7 +1,9 @@
 import 'package:news_app/data/api/api_manager/api_manager.dart';
 import 'package:news_app/data/data_source_impl/articles_data_source_impl.dart';
+import 'package:news_app/data/data_source_impl/search_articles_data_source_impl.dart';
 import 'package:news_app/data/data_source_impl/sources_data_source_impl.dart';
 import 'package:news_app/data/repo_impl/articles_repo_impl.dart';
+import 'package:news_app/data/repo_impl/search_articles_repo_impl.dart';
 import 'package:news_app/data/repo_impl/sources_repo_impl.dart';
 
 ArticlesRepoImpl getArticlesRepo() {
@@ -22,4 +24,10 @@ SourcesRepoImpl getSourcesRepo() {
 
 SourcesDataSourceImpl getSourcesDataSource() {
   return SourcesDataSourceImpl(apiManager: getApiManager());
+}
+SearchArticlesRepoImpl getSearchArticlesRepo(){
+  return SearchArticlesRepoImpl(dataSource: getSearchArticlesDataSource());
+}
+SearchArticlesDataSourceImpl getSearchArticlesDataSource(){
+  return SearchArticlesDataSourceImpl(apiManager: getApiManager());
 }

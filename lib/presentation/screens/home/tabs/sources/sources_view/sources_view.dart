@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/base/base_state/base_state.dart';
 import 'package:news_app/core/di.dart';
 import 'package:news_app/data_models/category_dm.dart';
+import 'package:news_app/domain/usecases/sources_usecase.dart';
 import 'package:news_app/presentation/common/error_state_widget.dart';
 import 'package:news_app/presentation/common/loading_state_widget.dart';
 import 'package:news_app/presentation/screens/home/tabs/sources/sources_viewModel/sources_viewModel.dart';
@@ -18,7 +19,7 @@ class SourcesView extends StatefulWidget {
 }
 
 class _SourcesViewState extends State<SourcesView> {
-  var viewModel = SourcesViewModel(repo: getSourcesRepo());
+  var viewModel = SourcesViewModel(usecase: GetSourcesUseCase(repo: getSourcesRepo()));
 
   @override
   void initState() {

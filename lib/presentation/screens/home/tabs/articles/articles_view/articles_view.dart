@@ -6,22 +6,23 @@ import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/core/colors_manager.dart';
 import 'package:news_app/core/di.dart';
 import 'package:news_app/core/routes_manager.dart';
-import 'package:news_app/data/api/model/articles_response/article.dart';
+import 'package:news_app/domain/entities/article_entity.dart';
+import 'package:news_app/domain/entities/source_entity.dart';
+import 'package:news_app/domain/usecases/articles_usecase.dart';
 import 'package:news_app/presentation/common/error_state_widget.dart';
 import 'package:news_app/presentation/common/loading_state_widget.dart';
 import 'package:provider/provider.dart';
-import '../../../../../../../../../data/api/model/sources_response/source.dart';
 import '../articles_viewModel/articles_viewModel.dart';
 
 class ArticlesView extends StatefulWidget {
   ArticlesView({super.key, required this.source});
 
-  Source source;
+  SourceEntity source;
 
   @override
   State<ArticlesView> createState() => _ArticlesViewState();
 
-  static Widget buildArticleItem(context, {required Article article}) {
+  static Widget buildArticleItem(context, {required ArticleEntity article}) {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
@@ -74,7 +75,8 @@ class ArticlesView extends StatefulWidget {
 }
 
 class _ArticlesViewState extends State<ArticlesView> {
-  var viewModel = ArticlesViewModel(repo: getArticlesRepo());
+  var viewModel =
+      ArticlesViewModel(usecase: GetArticlesUseCase(repo: getArticlesRepo()));
 
   @override
   void initState() {

@@ -5,6 +5,7 @@ import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/core/assets_manager.dart';
 import 'package:news_app/core/colors_manager.dart';
 import 'package:news_app/data/api/model/articles_response/article.dart';
+import 'package:news_app/domain/entities/article_entity.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleDetails extends StatelessWidget {
@@ -12,7 +13,7 @@ class ArticleDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Article article = ModalRoute.of(context)!.settings.arguments as Article;
+    ArticleEntity article = ModalRoute.of(context)!.settings.arguments as ArticleEntity;
     return Container(
       decoration: BoxDecoration(
           color: ColorsManager.white,

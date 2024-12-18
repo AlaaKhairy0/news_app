@@ -1,25 +1,25 @@
-import 'package:flutter/material.dart';
 import 'package:news_app/base/base_state/base_state.dart';
 import 'package:news_app/base/base_viewModel/base_viewModel.dart';
-import 'package:news_app/data/api/api_manager/api_manager.dart';
-import 'package:news_app/data/api/model/articles_response/article.dart';
-import 'package:news_app/repo/articles_repo.dart';
+import 'package:news_app/domain/entities/article_entity.dart';
+import 'package:news_app/domain/usecases/articles_usecase.dart';
 import 'package:news_app/result.dart';
 
-class ArticlesViewModel extends BaseViewModel<List<Article>> {
-  ArticlesRepo repo;
-  ArticlesViewModel({required this.repo}) : super(state: LoadingState());
+import '../../../../../../domain/repo/articles_repo.dart';
+
+class ArticlesViewModel extends BaseViewModel<List<ArticleEntity>> {
+  GetArticlesUseCase usecase;
+  ArticlesViewModel({required this.usecase}) : super(state: LoadingState());
 
   Future<void> getArticlesBySourceId(String sourceId) async {
     emit(LoadingState());
-    var response = await repo.getArticles(sourceId);
+    var response = await usecase.execute(sourceId);
 
     switch (response) {
-      case Success<List<Article>>():
+      case Success<List<ArticleEntity>>():
         emit(SuccessState(data: response.data));
-      case ServerError<List<Article>>():
+      case ServerError<List<ArticleEntity>>():
         emit(ErrorState(serverError: response));
-      case Error<List<Article>>():
+      case Error<List<ArticleEntity>>():
         emit(ErrorState(error: response));
     }
     //   if(response.status == 'ok'){

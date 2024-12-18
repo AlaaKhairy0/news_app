@@ -1,25 +1,26 @@
 import 'package:news_app/base/base_viewModel/base_viewModel.dart';
-import 'package:news_app/data/api/api_manager/api_manager.dart';
-import 'package:news_app/data/api/model/sources_response/source.dart';
-import 'package:news_app/repo/sources_repo.dart';
+import 'package:news_app/domain/entities/source_entity.dart';
+import 'package:news_app/domain/usecases/sources_usecase.dart';
 import 'package:news_app/result.dart';
 
 import '../../../../../../base/base_state/base_state.dart';
+import '../../../../../../domain/repo/sources_repo.dart';
 
-class SourcesViewModel extends BaseViewModel<List<Source>> {
-  SourcesRepo repo;
-  SourcesViewModel({required this.repo}) : super(state: LoadingState());
+class SourcesViewModel extends BaseViewModel<List<SourceEntity>> {
+  GetSourcesUseCase usecase;
+  SourcesViewModel({required this.usecase}) : super(state: LoadingState());
 
   Future<void> getSourcesByCategoryId(String categoryId) async {
     emit(LoadingState());
-    var response = await repo.getSources(categoryId);
-    switch (response) {
-      case Success<List<Source>>():
-        emit(SuccessState(data: response.data));
-      case ServerError<List<Source>>():
-        emit(ErrorState(serverError: response));
-      case Error<List<Source>>():
-        emit(ErrorState(error: response));
+    var response = await usecase.execute(categoryId);
+    switch(response){
+
+    case Success<List<SourceEntity>>():
+    emit(SuccessState(data: response.data));
+    case ServerError<List<SourceEntity>>():
+    emit(ErrorState(serverError: response));
+    case Error<List<SourceEntity>>():
+    emit(ErrorState(error: response));
     }
   }
 }
