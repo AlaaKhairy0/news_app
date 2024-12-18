@@ -1,16 +1,18 @@
 import 'package:news_app/base/base_viewModel/base_viewModel.dart';
 import 'package:news_app/data/api/api_manager/api_manager.dart';
 import 'package:news_app/data/api/model/sources_response/source.dart';
+import 'package:news_app/repo/sources_repo.dart';
 import 'package:news_app/result.dart';
 
 import '../../../../../../base/base_state/base_state.dart';
 
 class SourcesViewModel extends BaseViewModel<List<Source>> {
-  SourcesViewModel() : super(state: LoadingState());
+  SourcesRepo repo;
+  SourcesViewModel({required this.repo}) : super(state: LoadingState());
 
   Future<void> getSourcesByCategoryId(String categoryId) async {
     emit(LoadingState());
-    var response = await ApiManager.getSources(categoryId);
+    var response = await repo.getSources(categoryId);
     switch (response) {
       case Success<List<Source>>():
         emit(SuccessState(data: response.data));

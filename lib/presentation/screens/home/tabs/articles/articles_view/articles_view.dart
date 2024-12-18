@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/base/base_state/base_state.dart';
 import 'package:news_app/config/theme/app_style.dart';
 import 'package:news_app/core/colors_manager.dart';
+import 'package:news_app/core/di.dart';
 import 'package:news_app/core/routes_manager.dart';
 import 'package:news_app/data/api/model/articles_response/article.dart';
 import 'package:news_app/presentation/common/error_state_widget.dart';
@@ -73,7 +74,7 @@ class ArticlesView extends StatefulWidget {
 }
 
 class _ArticlesViewState extends State<ArticlesView> {
-  var viewModel = ArticlesViewModel();
+  var viewModel = ArticlesViewModel(repo: getArticlesRepo());
 
   @override
   void initState() {
