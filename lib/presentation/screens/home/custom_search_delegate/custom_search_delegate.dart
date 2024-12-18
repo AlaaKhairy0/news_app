@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/base/base_state/base_state.dart';
-import 'package:news_app/data/api/model/articles_response/article.dart';
+import 'package:news_app/core/di.dart';
+import 'package:news_app/domain/entities/article_entity.dart';
 import 'package:news_app/presentation/screens/home/custom_search_delegate/custom_search_delegate_viewModel.dart';
 import 'package:news_app/presentation/screens/home/tabs/articles/articles_view/articles_view.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    var viewModel = CustomSearchDelegateViewModel();
+    var viewModel = CustomSearchDelegateViewModel(repo: getSearchArticlesRepo() );
     viewModel.getArticlesByQuery(query);
     return Container(
         decoration: BoxDecoration(
@@ -51,13 +52,13 @@ class CustomSearchDelegate extends SearchDelegate<String> {
             builder: (context, viewModel, child) {
               var state = viewModel.state;
               switch (state) {
-                case LoadingState<List<Article>>():
+                case LoadingState<List<ArticleEntity>>():
                   return Center(
                     child: CircularProgressIndicator(
                       color: ColorsManager.green,
                     ),
                   );
-                case SuccessState<List<Article>>():
+                case SuccessState<List<ArticleEntity>>():
                   return Expanded(
                     child: ListView.builder(
                       itemBuilder: (context, index) =>
@@ -68,7 +69,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
                       itemCount: state.data.length,
                     ),
                   );
-                case ErrorState<List<Article>>():
+                case ErrorState<List<ArticleEntity>>():
                   return Text('handle it later');
               }
               // if (viewModel.isLoading) {

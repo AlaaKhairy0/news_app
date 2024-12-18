@@ -57,7 +57,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Article>>> searchArticles(
+   Future<Result<List<Article>>> searchArticles(
       {String query = ''}) async {
     Uri url = Uri.https(baseUrl, articlesEndPoint, {
       'apiKey': apiKey,
