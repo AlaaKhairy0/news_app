@@ -12,7 +12,7 @@ class ApiManager {
   static const String sourcesEndPoint = '/v2/top-headlines/sources';
   static const String articlesEndPoint = '/v2/everything';
 
-  static Future<Result<List<Source>>> getSources(String categoryId) async {
+   Future<Result<List<Source>>> getSources(String categoryId) async {
     Uri url = Uri.https(baseUrl, sourcesEndPoint, {
       'apiKey': apiKey,
       'category': categoryId,
@@ -33,7 +33,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Article>>> getArticles(
+   Future<Result<List<Article>>> getArticles(
     String sourceId,
   ) async {
     Uri url = Uri.https(baseUrl, articlesEndPoint, {

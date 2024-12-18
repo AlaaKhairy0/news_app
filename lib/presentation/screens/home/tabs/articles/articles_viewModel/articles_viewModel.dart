@@ -3,14 +3,16 @@ import 'package:news_app/base/base_state/base_state.dart';
 import 'package:news_app/base/base_viewModel/base_viewModel.dart';
 import 'package:news_app/data/api/api_manager/api_manager.dart';
 import 'package:news_app/data/api/model/articles_response/article.dart';
+import 'package:news_app/repo/articles_repo.dart';
 import 'package:news_app/result.dart';
 
 class ArticlesViewModel extends BaseViewModel<List<Article>> {
-  ArticlesViewModel() : super(state: LoadingState());
+  ArticlesRepo repo;
+  ArticlesViewModel({required this.repo}) : super(state: LoadingState());
 
   Future<void> getArticlesBySourceId(String sourceId) async {
     emit(LoadingState());
-    var response = await ApiManager.getArticles(sourceId);
+    var response = await repo.getArticles(sourceId);
 
     switch (response) {
       case Success<List<Article>>():

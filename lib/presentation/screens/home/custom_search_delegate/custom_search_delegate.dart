@@ -8,6 +8,9 @@ import '../../../../core/assets_manager.dart';
 import '../../../../core/colors_manager.dart';
 
 class CustomSearchDelegate extends SearchDelegate<String> {
+
+
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -57,10 +60,11 @@ class CustomSearchDelegate extends SearchDelegate<String> {
                 case SuccessState<List<Article>>():
                   return Expanded(
                     child: ListView.builder(
-                      itemBuilder: (context, index) => InkWell(
-                          onTap: () {},
-                          child: ArticlesView.buildArticleItem(context,
-                              article: state.data[index])),
+                      itemBuilder: (context, index) =>
+                          InkWell(
+                              onTap: () {},
+                              child: ArticlesView.buildArticleItem(context,
+                                  article: state.data[index])),
                       itemCount: state.data.length,
                     ),
                   );
