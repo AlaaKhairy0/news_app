@@ -1,16 +1,67 @@
-# news_app
+## 📰 News App
 
-A new Flutter project.
+# 📱 Instant News App
 
-## Getting Started
+Instant News App is a user-friendly mobile application that provides the latest news updates from various sources. It offers an intuitive interface, efficient content discovery, and smooth performance across devices.
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📰 **Real-Time News Feed**  
+  Fetches the latest news articles from [NewsAPI.org](https://newsapi.org/) with live updates.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 🔍 **Search Functionality**  
+  Allows users to search for news articles using keywords for quick access to relevant content.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🧭 **Category-Based Filtering**  
+  Browse news based on categories like Business, Technology, Sports, Health, and more.
+
+- 📄 **Detailed Article View**  
+  Tap on a news item to read full details including title, description, source, and publication date.
+
+- 🌐 **In-App WebView**  
+  View the full article in a WebView without leaving the app.
+
+- 📱 **Responsive UI**  
+  Optimized for smooth performance and visual appeal across all screen sizes.
+
+- 🧱 **Clean Architecture**  
+  Follows Clean Architecture principles to ensure maintainable and scalable code structure.
+
+
+## 🎥 Demo
+
+Check out a short video demo of the app:  
+👉 [App Demo](https://drive.google.com/file/d/1QE1zcLlZaEEGCWZ9e5q1gYg4P42jnZBH/view?usp=drive_link)
+
+## 🛠️ Tech Stack
+
+- **Flutter**
+- **Dart**
+- **Provider** (state management)
+- **[NewsAPI.org](https://newsapi.org/)** (for fetching news)
+
+## 📦 Installation
+
+To run this project locally:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/instant-news-app.git
+   cd instant-news-app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+> 💡 Ensure you have Flutter installed and configured. Follow the official guide at [flutter.dev](https://flutter.dev/docs/get-started/install).  
+> 🔑 You will need an API key from [NewsAPI.org](https://newsapi.org/) – sign up for a free key and add it to your app config.
+
+
+
