@@ -1,8 +1,6 @@
 ## 📰 News App
 
-# 📱 Instant News App
-
-Instant News App is a user-friendly mobile application that provides the latest news updates from various sources. It offers an intuitive interface, efficient content discovery, and smooth performance across devices.
+News App is a user-friendly mobile application that provides the latest news updates from various sources. It offers an intuitive interface, efficient content discovery, and smooth performance across devices.
 
 ## 🚀 Features
 
@@ -33,6 +31,17 @@ Instant News App is a user-friendly mobile application that provides the latest 
 Check out a short video demo of the app:  
 👉 [App Demo](https://drive.google.com/file/d/1QE1zcLlZaEEGCWZ9e5q1gYg4P42jnZBH/view?usp=drive_link)
 
+## 📸 Screenshots
+
+| Home Screen | Category View |
+|-------------|----------------|
+| ![Home Screen](assets/screenshots/home.png) | ![Category View](assets/screenshots/category_view.png) |
+
+| Article Detail | Search View |
+|----------------|--------------|
+| ![Article Detail](assets/screenshots/article_detail.png) | ![Search View](assets/screenshots/search_view.png) |
+
+
 ## 🛠️ Tech Stack
 
 - **Flutter**
@@ -46,7 +55,7 @@ To run this project locally:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/instant-news-app.git
+   git clone https://github.com/your-username/news-app.git
    cd instant-news-app
    ```
 
